@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Nesne Kullanımı</title>
+</head>
+
+<body>
+<?php 
+//Php ile nesneye yönelik programlama
+
+//personel isminde bir class oluşturuldu
+class personel {
+
+	public $isim;
+	public $dogumtarihi;
+	
+	public function bilgilerim() 
+	{
+	echo "Merhaba Ben " . $this->isim;
+	}
+	
+	public function yasinisoyle()
+	{
+	echo "<div>";
+	echo $this->dogumtarihi . " yılında doğdum ve ";
+	echo (date("Y")-$this->dogumtarihi) . " yaşındayım";
+	echo "</div>";
+	}
+
+} //personel class
+
+//personel class'ından miras alınıyor
+class baypersonel extends personel{
+	public  $cinsiyet="Bay";
+
+	public function bilgilerim() 
+	{
+	echo "Merhaba Ben " . $this->isim . " ve bir " . $this->cinsiyet . " personelim";
+	}	
+	
+}
+
+//baypersonel class'ından miras alınıyor
+class bayanpersonel extends baypersonel {
+	public  $cinsiyet="Bayan";
+}
+
+
+$personel1=new personel(); //personel class'ından bir nesne türetildi
+$personel1->isim="Ahmet Eren";
+$personel1->dogumtarihi="1979";
+$personel1->bilgilerim();
+$personel1->yasinisoyle();
+
+echo "<br />";
+
+$personel2=new personel();  //personel class'ından bir nesne türetildi
+$personel2->isim="Nihan Cemre";
+$personel2->dogumtarihi="1976";
+$personel2->bilgilerim();
+$personel2->yasinisoyle();
+
+echo "<br />";
+
+$personel3=new baypersonel();  //baypersonel class'ından bir nesne türetildi
+$personel3->isim="Celal OF";
+$personel3->dogumtarihi="1977";
+$personel3->bilgilerim();
+$personel3->yasinisoyle();
+
+echo "<br />";
+
+$personel4=new bayanpersonel();  //bayanpersonel class'ından bir nesne türetildi
+$personel4->isim="Funda Melek";
+$personel4->dogumtarihi="1978";
+$personel4->bilgilerim();
+$personel4->yasinisoyle();
+?>
+</body>
+</html>

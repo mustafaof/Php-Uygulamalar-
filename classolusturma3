@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Nesne Kullanımı</title>
+</head>
+
+<body>
+<?php 
+//Php ile nesneye yönelik programlama
+class sinif1 {
+	public $geneluye="public (Genel üye)"; //public : Tüm sınıflar tarafından kullanılır
+	private $ozeluye="private (Özel üye)"; //private : Sadece üyelerin ait olduğu sınıflar tarafından kullanılır
+	protected $korumaliuye="protected (Korumalı üye)"; //protected : Alt sınıflar tarafından kullanılır
+	
+	public function degiskenlerigoster() 
+	{
+	echo $this->geneluye;
+	echo "<br />";
+	echo $this->ozeluye;
+	echo "<br />";
+	echo $this->korumaliuye;
+	}
+	
+	public function ozeluyeleriyaz($deger) 
+	{
+	$this->ozeluye=$deger;
+	}
+	
+} //sinif1 class
+
+class sinif2 extends sinif1{
+	public function korumaliuyeleriyaz($deger) 
+	{
+	$this->korumaliuye=$deger;
+	}
+
+} //sinif2 class
+
+class sinif3 {
+} //sinif3 class
+
+$nesne1 = new sinif1();
+echo "Genel (public) :" . $nesne1->geneluye . "<hr />"; 
+echo "<br />";
+//echo "Özel (private) :" . $nesne1->ozeluye;  //Bu satır hata üretecektir. Çünkü private...
+//echo "Korumalı (protected) :" . $nesne1->korumaliuye;  //Bu satır hata üretecektir. Çünkü protected...
+
+$nesne1->ozeluyeleriyaz("private : Sadece üyelerin ait olduğu sınıflar tarafından üyeler");
+$nesne1->degiskenlerigoster();
+
+echo "<hr />";
+$nesne2 = new sinif2();
+$nesne2->korumaliuyeleriyaz("protected : Alt sınıflar tarafından kullanılan üyeler");
+$nesne2->degiskenlerigoster();
+
+echo "<hr />";
+
+if ($nesne2 instanceof sinif1)
+{
+echo "nesne2, sinif1'in üyesi olan bir nesnedir.<br />";
+$nesne2->degiskenlerigoster();
+}
+else
+{
+echo "nesne2, sinif1'in üyesi olmayan bir nesnedir.";
+}
+?>
+</body>
+</html>

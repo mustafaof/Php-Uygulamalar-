@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Nesne Kullanımı</title>
+</head>
+
+<body>
+<?php 
+//Php ile nesneye yönelik programlama
+class personel  {
+	public $isim="Ali Aslan";
+	
+	//Class'ın yapıcısı oluşturuldu
+	function __construct()
+	{
+	echo $this->isim;
+	}
+	
+	function __destruct()
+	{
+	echo "Nesne yok edildi";
+	}
+	
+	public function bilgilerim() 
+	{
+	echo "Merhaba Ben " . $this->isim;
+	}
+} //personel class
+
+$personel1=new personel();
+$personel1->bilgilerim();
+
+echo "<br />";
+
+$personel2=new personel();
+unset($personel2);
+?>
+</body>
+</html>
